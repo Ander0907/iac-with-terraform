@@ -1,7 +1,8 @@
 /*
-    Creacion de un archivo local con Terraform
+  Creates a local file with static content.
+  This demonstrates basic Terraform resource declaration.
 */
-resource "local_file" "productos" {
-  content  = "Lista de productos"
-  filename  = "productos.txt"
+resource "local_file" "products" {
+    content  = "Lista de products"
+    filename  = "products.txt"
 }

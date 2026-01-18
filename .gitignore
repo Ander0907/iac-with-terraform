@@ -4,3 +4,4 @@ credentials.txt
 *.tfstate
 *.tfstate.lock.info
 *tfstate.backup
+*.txt

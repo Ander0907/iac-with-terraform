@@ -147,14 +147,37 @@ Esto es útil cuando necesitas almacenar contenido binario o especial.
 
 ---
 
-## Comandos
-terraform init: Descarga el provider necesario para hacer deploy en el código. Terraform infiere en automatico el provedor necesario por el tipo de bloque de Código.
-terraform plan: Genera un plan en base a todo nuestro código y nos lo va a presentar indicandonos las acciones que va a realizar. No afecta la IAC
-terraform apply: Crea un plan y nos lo presenta
-terraform destroy: Eliminar los recursos que haya deploy con la IAC
+## Comandos principales de Terraform
 
-## Recordar
-Terraform trabaja bajo el concepto d einmatbilidad.
+Los comandos esenciales para trabajar con Terraform son:
+
+| Comando | Descripción |
+|---------|------------|
+| `terraform init` | Descarga e inicializa los providers necesarios para tu configuración. Terraform infiere automáticamente el provider requerido según los tipos de recursos definidos en tu código |
+| `terraform plan` | Genera un plan de ejecución basado en tu código. Muestra qué acciones se realizarán (crear, modificar o destruir recursos). **No modifica la infraestructura real** |
+| `terraform apply` | Ejecuta el plan y aplica los cambios reales a la infraestructura. Crea, modifica o destruye recursos según la configuración |
+| `terraform destroy` | Elimina todos los recursos que fueron creados por Terraform. Usa con cuidado, ya que es destructivo |
+
+### Flujo típico de trabajo
+
+1. **Escribir configuración** - Define tus recursos en archivos `.tf`
+2. **Ejecutar `terraform init`** - Prepara el ambiente
+3. **Ejecutar `terraform plan`** - Revisa qué cambios se harán
+4. **Ejecutar `terraform apply`** - Aplica los cambios
+5. **Ejecutar `terraform destroy`** (cuando sea necesario) - Limpia los recursos
+
+---
+
+## Concepto importante: Inmutabilidad
+
+Terraform trabaja bajo el concepto de **inmutabilidad**. Esto significa:
+
+- **Declarativo, no imperativo**: Describes el estado deseado de tu infraestructura, no los pasos para construirla
+- **Estado idempotente**: Puedes ejecutar `terraform apply` múltiples veces y siempre llegarás al mismo estado
+- **Infraestructura versionable**: Tu código es la fuente de verdad; todo cambio debe pasar por la configuración
+- **Trazabilidad**: Cada cambio en `terraform.tfstate` documenta quién hizo qué y cuándo
+
+Esta característica es fundamental para mantener la consistencia y confiabilidad de tu infraestructura.
 
 ## Resumen
 
