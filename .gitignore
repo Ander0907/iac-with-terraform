@@ -1,0 +1,6 @@
+credentials.txt
+.terraform/
+.terraform.lock.hcl
+*.tfstate
+*.tfstate.lock.info
+*tfstate.backup
