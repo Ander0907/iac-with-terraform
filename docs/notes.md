@@ -206,6 +206,28 @@ variable "example_tuple" {
 }
 ```
 
+### F. `output`
+
+Sirve para exponer valores despues de `terraform apply` (por ejemplo IDs, IPs, URLs o nombres).
+
+Ejemplo:
+
+```hcl
+output "instance_public_ip" {
+  description = "IP publica de la instancia"
+  value       = aws_instance.web.public_ip
+}
+```
+
+Tambien puedes marcar un output como sensible:
+
+```hcl
+output "db_password" {
+  value     = var.db_password
+  sensitive = true
+}
+```
+
 ## 6) Nota sobre `sensitive`
 
 Si una variable es `sensitive = true`, Terraform intenta ocultar su valor en la salida de `plan` y `apply`.
