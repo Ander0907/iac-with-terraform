@@ -8,3 +8,5 @@ terraform fmt: sirve para la identación
 terraform validate: valida que la sintaxis sea correcta
 terraform init -upgrade
 terraform output
+terraform apply --auto-approve=true
+terraform apply --target nombre
