@@ -3,12 +3,22 @@ variable "vpc_virginia_cidr" {
   type        = string
 }
 
-variable "public_cidr_subnet" {
-  description = "CIDR Public Subnet"
-  type        = string
+# variable "public_cidr_subnet" {
+#   description = "CIDR Public Subnet"
+#   type        = string
+# }
+
+# variable "private_cidr_subnet" {
+#   description = "CIDR Private Subnet"
+#   type        = string
+# }
+
+variable "subnets" {
+  description = "List of Subnets"
+  type        = list(string)
 }
 
-variable "private_cidr_subnet" {
-  description = "CIDR Private Subnet"
-  type        = string
+variable "tags" {
+  description = "Project tags"
+  type        = map(string)
 }
