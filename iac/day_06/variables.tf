@@ -22,3 +22,13 @@ variable "tags" {
   description = "Project tags"
   type        = map(string)
 }
+
+variable "sg_ingress_cidr" {
+  description = "CIDR for security group ingress rules"
+  type        = string
+}
+
+variable "sg_egress_cidr" {
+  description = "CIDR for security group egress rules"
+  type        = string
+}
