@@ -381,3 +381,4 @@ terraform taint aws_instance.web
 terraform plan
 terraform untaint aws_instance.web
 ```
+## 23) `terraform console`
