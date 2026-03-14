@@ -32,3 +32,8 @@ variable "sg_egress_cidr" {
   description = "CIDR for security group egress rules"
   type        = string
 }
+
+variable "ec2_specs" {
+  description = "AMI and Instance type for ECS"
+  type = map(string)
+}
