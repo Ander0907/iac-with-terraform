@@ -1,7 +1,7 @@
 variable "instances" {
   description = "Name of EC2 instances to create"
   type        = list(string)
-  default     = ["instance1", "instance2", "instance3"]
+  default     = ["instance1"]
 }
 
 resource "aws_instance" "public_instance" {

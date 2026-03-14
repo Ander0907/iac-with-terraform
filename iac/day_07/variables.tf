@@ -42,3 +42,8 @@ variable "enabled_monitoring" {
   description = "Is enable monitoring"
   type = bool
 }
+
+variable "ingress_ports" {
+  description = "List of ports to allow in security group ingress rules"
+  type        = list(number)
+}

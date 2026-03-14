@@ -52,12 +52,14 @@ resource "aws_security_group" "sg_public_instance" {
   description = "Allow SSH and HTTP access to public instance"
   vpc_id      = aws_vpc.vpc_virginia.id
 
-  ingress {
-    description = "SSH over internet"
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = [var.sg_ingress_cidr]
+  dynamic "ingress" {
+    for_each = var.ingress_ports
+    content {
+      from_port = ingress.value
+      to_port = ingress.value
+      protocol = "tcp"
+      cidr_blocks = [var.sg_ingress_cidr]
+    }
   }
 
   egress {
