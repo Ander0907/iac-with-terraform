@@ -335,3 +335,49 @@ Usa `terraform plan -refresh-only` o `terraform apply -refresh-only` segun el ca
 - Prefiere backend remoto con locking.
 - Evita `-target` salvo incidentes puntuales.
 - En produccion, usa siempre `plan -out` y luego `apply <plan>`.
+
+## 22) `terraform taint <recurso>`
+**Que hace:**
+Marca un recurso en el estado como "tainted" para forzar su recreacion en el siguiente `terraform apply`.
+
+**Caso de uso:**
+- El recurso quedo en mal estado y quieres recrearlo.
+- Hubo una provision incompleta y conviene reemplazar la instancia.
+- Laboratorios o pruebas donde quieres forzar recreacion puntual.
+
+**Nota:**
+Es un comando legado. En flujos modernos suele preferirse:
+
+```bash
+terraform apply -replace=aws_instance.web
+```
+
+porque permite revisar el cambio directamente en el plan/apply sin marcar el estado de forma separada.
+
+**Ejemplo:**
+```bash
+terraform taint aws_instance.web
+```
+
+---
+
+## 23) `terraform untaint <recurso>`
+**Que hace:**
+Quita la marca `tainted` de un recurso en el estado para evitar que Terraform lo recree automaticamente.
+
+**Caso de uso:**
+- Marcaste un recurso por error con `terraform taint`.
+- Revisaste el recurso y confirmaste que no hace falta reemplazarlo.
+- Quieres cancelar una recreacion forzada antes del siguiente `apply`.
+
+**Ejemplo:**
+```bash
+terraform untaint aws_instance.web
+```
+
+**Flujo tipico:**
+```bash
+terraform taint aws_instance.web
+terraform plan
+terraform untaint aws_instance.web
+```
